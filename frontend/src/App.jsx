@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/home/HomePage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
@@ -14,10 +14,15 @@ import NotFoundPage from "./pages/404";
 
 function App() {
 	const { user, isCheckingAuth, authCheck } = useAuthStore();
+	const location = useLocation();
 
 	useEffect(() => {
 		authCheck();
 	}, [authCheck]);
+
+	useEffect(() => {
+		window.scrollTo(0, 0);
+	}, [location]);
 
 	if (isCheckingAuth) {
 		return (
